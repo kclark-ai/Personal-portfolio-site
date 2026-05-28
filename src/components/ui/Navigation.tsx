@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { motion, useScroll } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
 
 const SECTIONS = [
   { id: 'about',      label: 'About' },
@@ -16,7 +15,7 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [isHero, setIsHero]     = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { scrollYProgress }     = useScroll();
+  const progressRef             = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -35,10 +34,11 @@ export default function Navigation() {
 
     const onScroll = () => {
       setScrolled(window.scrollY > 64);
-      // Stay light through the full curtain reveal (hero visible 0→150vh).
-      // Switch to dark exactly when curtain completes — 300ms CSS transition
-      // carries through the brief moment before curtain unmounts at 1.55*vh.
       setIsHero(window.scrollY < window.innerHeight * 0.75);
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      if (progressRef.current && total > 0) {
+        progressRef.current.style.transform = `scaleX(${window.scrollY / total})`;
+      }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
@@ -60,9 +60,10 @@ export default function Navigation() {
       }`}
     >
       {/* Scroll progress line */}
-      <motion.div
+      <div
+        ref={progressRef}
         className="nav-progress absolute bottom-0 left-0 h-[1px] bg-oxblood"
-        style={{ scaleX: scrollYProgress, width: '100%' }}
+        style={{ width: '100%', transform: 'scaleX(0)' }}
       />
 
       <div className="max-w-5xl mx-auto px-8 md:px-14 h-11 flex items-center justify-between">
