@@ -28,10 +28,10 @@ git push
 
 ## Sections (in order)
 01 - ABOUT
-02 - EXPERIENCE
-03 - DOMAINS
+02 - DOMAINS
+03 - MANIFESTO
 04 - DEPLOYMENT (4 colored panels — centerpiece)
-05 - PROJECTS (placeholder → real cards)
+05 - PROJECTS
 06 - WRITING (placeholder → essays)
 07 - CONNECT
 
