@@ -6,10 +6,6 @@ tags: ["Deployment", "Enterprise"]
 summary: "Why most enterprise AI investments fail not in model selection or integration, but in the final 20% between working prototype and organizational adoption."
 ---
 
-# The Last Mile Problem in Enterprise AI
-
-*First draft — in progress*
-
 The pattern repeats itself across organizations: a team builds a working prototype. Leadership approves deployment. Six months later, the tool is used by a fraction of its intended users, with results far below what the prototype demonstrated.
 
 This isn't a technology problem. The model works. The integration works. What fails is the last mile: the gap between a system that functions and a system that gets used by the people it was built for.

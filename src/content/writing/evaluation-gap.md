@@ -6,10 +6,6 @@ tags: ["Evaluation", "Strategy"]
 summary: "The absence of rigorous evaluation frameworks is the most underreported problem in enterprise AI deployment — and it's causing billions in misallocated investment."
 ---
 
-# The Evaluation Gap
-
-*Outlined — in progress*
-
 When an enterprise deploys an AI system for professional work, they face a question that sounds simple and isn't: is this good enough?
 
 Good enough for what? Good enough compared to what baseline? Good enough according to whose standards? Good enough to justify the cost? Good enough to trust with decisions that matter?

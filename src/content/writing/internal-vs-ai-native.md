@@ -6,10 +6,6 @@ tags: ["Leadership", "Enterprise"]
 summary: "Why strategies that work at AI-first companies create debt when applied inside traditional enterprise — and what actually works instead."
 ---
 
-# Internal vs. AI-Native: Why the Playbooks Don't Transfer
-
-*Researching — in progress*
-
 Every few months, a new framework gets published about how to lead AI transformation. Most of them are written by people who built AI-native products — companies where AI was central from the beginning.
 
 These frameworks don't transfer to internal enterprise AI leadership. The constraints are different. The stakeholders are different. The definition of "done" is different.
