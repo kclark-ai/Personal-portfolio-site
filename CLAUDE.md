@@ -56,7 +56,6 @@ git push
 
 ## Pending Work
 - Copy edits throughout
-- Projects section: next card = Meeting Intelligence Agent
 - Writing section: fill with essays
 - Mobile hamburger menu refinement
 
