@@ -2,6 +2,7 @@
 const essays = [
   {
     num:     '01',
+    slug:    'last-mile-problem',
     title:   'The Last Mile Problem in Enterprise AI',
     status:  'First draft',
     preview: 'Why most enterprise AI investments fail not in model selection or integration, but in the final 20% between working prototype and organizational adoption.',
@@ -9,6 +10,7 @@ const essays = [
   },
   {
     num:     '02',
+    slug:    'evaluation-gap',
     title:   'The Evaluation Gap',
     status:  'Outlined',
     preview: 'The absence of rigorous evaluation frameworks is the most underreported problem in enterprise AI deployment and it\'s causing billions in misallocated investment.',
@@ -16,6 +18,7 @@ const essays = [
   },
   {
     num:     '03',
+    slug:    'internal-vs-ai-native',
     title:   'Internal vs. AI-Native: Why the Playbooks Don\'t Transfer',
     status:  'Researching',
     preview: 'Why strategies that work at AI-first companies create debt when applied inside traditional enterprise — and what actually works instead.',
@@ -44,8 +47,9 @@ const essays = [
   <!-- List with hover-reveal metadata -->
   <div class="divide-y divide-rule fade-up delay-1">
     {essays.map((e, i) => (
-      <div
-        class="group py-8 grid md:grid-cols-[1fr_auto] gap-6 items-start cursor-default"
+      <a
+        href={`/writing/${e.slug}`}
+        class="group py-8 grid md:grid-cols-[1fr_auto] gap-6 items-start"
         style={`transition-delay: ${i * 0.07}s`}
       >
         <div>
@@ -73,7 +77,7 @@ const essays = [
             </span>
           ))}
         </div>
-      </div>
+      </a>
     ))}
   </div>
 
