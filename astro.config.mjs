@@ -53,6 +53,7 @@ function injectFontPreloads() {
 }
 
 export default defineConfig({
+  site: 'https://kevinclark.ai',
   vite: {
     plugins: [tailwindcss()],
   },
