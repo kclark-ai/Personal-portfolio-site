@@ -54,6 +54,10 @@ git push
 - LinkedIn: linkedin.com/in/kevinclarkai
 - GitHub: github.com/kclark-ai
 
+## SEO / Canonical
+- `Layout.astro` uses `Astro.url.href` for both `<link rel="canonical">` and `og:url` (per-page, not hardcoded)
+- `astro.config.mjs` has `site: 'https://kevinclark.ai'` — required for `Astro.url` to resolve to the real domain in static builds; do not remove
+
 ## Pending Work
 - Copy edits throughout
 - Writing section: fill with essays
