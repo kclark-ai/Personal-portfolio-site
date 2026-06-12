@@ -58,6 +58,9 @@ git push
 - `Layout.astro` uses `Astro.url.href` for both `<link rel="canonical">` and `og:url` (per-page, not hardcoded)
 - `astro.config.mjs` has `site: 'https://kevinclark.ai'` — required for `Astro.url` to resolve to the real domain in static builds; do not remove
 
+## Known Gotchas
+- `Writing.astro` has hardcoded essay data (num, slug, title, status, preview, tags) — it does NOT read from the content collection. When adding or updating essays, update both the content file AND the card array in `src/components/sections/Writing.astro`.
+
 ## Pending Work
 - Copy edits throughout
 - Writing section: fill with essays
