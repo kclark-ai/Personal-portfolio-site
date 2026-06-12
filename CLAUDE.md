@@ -51,7 +51,7 @@ git push
 
 ## Contact
 - Email: kc@kevinclark.ai
-- LinkedIn: linkedin.com/in/kevinfrancisclark
+- LinkedIn: linkedin.com/in/kevinclarkai
 - GitHub: github.com/kclark-ai
 
 ## Pending Work
