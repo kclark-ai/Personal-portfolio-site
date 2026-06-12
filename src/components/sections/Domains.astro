@@ -4,46 +4,55 @@ const domains = [
     num:   '01',
     name:  'AI Deployment',
     desc:  'From prototype to production: integration, volume handling, organizational adoption.',
+    pov:   'The model is the commodity and deployment is the product. Organizations that treat the last mile as cleanup work are spending on the 80 percent that was already solved.',
   },
   {
     num:   '02',
     name:  'Evaluation Design',
     desc:  'Frameworks for what "good enough" means across high-stakes professional workflows.',
+    pov:   'Good enough for what, compared to what, according to whom, at what cost. An unmeasured deployment is unfalsifiable, and unfalsifiable investments are how budgets die.',
   },
   {
     num:   '03',
     name:  'Agent Architecture',
     desc:  'Systems that automate and augment expert work without removing human judgment.',
+    pov:   'The question is never what can be automated. It is what the human should still own, and the best agents compress everything around that judgment instead of replacing it.',
   },
   {
     num:   '04',
     name:  'Enterprise Strategy',
     desc:  'Technology decisions inside complex organizations with competing stakeholders.',
+    pov:   'Most technology decisions are stakeholder decisions wearing a technical costume. The architecture diagram is rarely the hard part of the architecture.',
   },
   {
     num:   '05',
     name:  'Change Management',
     desc:  'Why organizational adoption fails and the structural reasons it gets ignored.',
+    pov:   'Adoption is a behavior problem, not a feature problem. Trust travels through colleagues, never through mandates, which is why champions outperform announcements every time.',
   },
   {
     num:   '06',
     name:  'Knowledge Work',
     desc:  'Making professional expertise scalable without diluting the expertise itself.',
+    pov:   'Scaling expertise is easy if you are willing to flatten it. The discipline is capturing the judgment behind the output, not just the output.',
   },
   {
     num:   '07',
     name:  'Governance & Risk',
     desc:  'Moving fast without breaking trust: compliance, accountability, audit trails.',
+    pov:   'Governance done right is a speed enabler. Clear rules are what let cautious people move fast without fearing they will be next month\'s cautionary tale.',
   },
   {
     num:   '08',
     name:  'Product Leadership',
     desc:  'Building what users need, not what stakeholders ask for, inside enterprise constraints.',
+    pov:   'Users tell you their requests and their workflows tell you their needs. Those are different documents, and the second one is where the value lives.',
   },
   {
     num:   '09',
     name:  'AI Literacy',
     desc:  'Closing the gap between capability and understanding before it becomes a liability.',
+    pov:   'Fluency fails as a training program and works as an operating model. The gap between capability and understanding is where fear, workarounds, and confident bad decisions live.',
   },
 ];
 ---
@@ -63,7 +72,11 @@ const domains = [
 
   <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-px bg-rule fade-up delay-1">
     {domains.map((d) => (
-      <div class="domain-card bg-parchment border border-transparent p-7 flex flex-col gap-3 group cursor-default">
+      <div
+        class="domain-card bg-parchment border border-transparent p-7 flex flex-col gap-3 group cursor-default"
+        tabindex="0"
+        data-domain-card
+      >
         <div class="flex items-start justify-between">
           <span
             class="domain-num font-mono text-[10px] tracking-[0.14em] text-ink-3 transition-colors duration-220"
@@ -71,13 +84,26 @@ const domains = [
           >
             {d.num}
           </span>
+          <span class="domain-glyph font-mono text-[10px] text-ink-3" aria-hidden="true">+</span>
         </div>
         <h3 class="font-serif font-light text-lg text-ink leading-snug" style="font-variation-settings: 'opsz' 48">
           {d.name}
         </h3>
-        <p class="text-xs text-ink-3 leading-relaxed">{d.desc}</p>
+        <div class="domain-texts">
+          <p class="domain-desc text-xs text-ink-3 leading-relaxed">{d.desc}</p>
+          <p class="domain-pov text-xs text-ink leading-relaxed">{d.pov}</p>
+        </div>
       </div>
     ))}
   </div>
 
 </section>
+
+<script>
+  // Touch toggle: only activate on non-hover (touch) devices
+  if (!window.matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('[data-domain-card]').forEach((card) => {
+      card.addEventListener('click', () => card.classList.toggle('is-active'));
+    });
+  }
+</script>

@@ -158,13 +158,76 @@ body {
 
 /* ─── Domain grid ────────────────────────────────────────── */
 .domain-card {
-  transition: border-color 220ms ease, color 220ms ease;
+  transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
 }
-.domain-card:hover {
+.domain-card:hover,
+.domain-card.is-active {
   border-color: var(--color-oxblood) !important;
 }
-.domain-card:hover .domain-num {
+.domain-card:hover .domain-num,
+.domain-card.is-active .domain-num,
+.domain-card:focus-visible .domain-num {
   color: var(--color-oxblood);
+}
+
+/* Lift — pointer devices only, respects reduced-motion */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .domain-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+}
+
+/* Focus ring */
+.domain-card:focus-visible {
+  outline: 2px solid var(--color-oxblood);
+  outline-offset: 2px;
+}
+
+/* Text crossfade stack: both texts sit in the same grid cell so the
+   taller one always reserves the height — zero layout shift on swap */
+.domain-texts {
+  display: grid;
+}
+.domain-texts > * {
+  grid-area: 1 / 1;
+  align-self: start;
+}
+.domain-desc {
+  transition: opacity 220ms ease;
+}
+.domain-pov {
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+/* Reveal POV — hover + focus on pointer devices */
+@media (hover: hover) {
+  .domain-card:hover .domain-desc,
+  .domain-card:focus-visible .domain-desc { opacity: 0; }
+  .domain-card:hover .domain-pov,
+  .domain-card:focus-visible .domain-pov  { opacity: 1; }
+  .domain-glyph { display: none; }
+}
+
+/* Reveal POV — touch toggle + keyboard focus */
+.domain-card.is-active .domain-desc,
+.domain-card:focus-visible .domain-desc { opacity: 0; }
+.domain-card.is-active .domain-pov,
+.domain-card:focus-visible .domain-pov  { opacity: 1; }
+
+/* Touch glyph: "+" rotates to "×" when active */
+.domain-glyph {
+  transition: transform 220ms ease, color 220ms ease;
+  line-height: 1;
+}
+.domain-card.is-active .domain-glyph,
+.domain-card:focus-visible .domain-glyph {
+  transform: rotate(45deg);
+  color: var(--color-oxblood);
+}
+@media (hover: none) {
+  .domain-card { cursor: pointer; }
 }
 
 /* ─── Project cards ──────────────────────────────────────── */
@@ -312,4 +375,5 @@ body {
   }
   #cursor-ring { display: none; }
   .wave-path { animation: none; }
+  .domain-desc, .domain-pov, .domain-glyph { transition: none; }
 }
