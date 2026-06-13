@@ -12,6 +12,7 @@ import Writing     from '../components/sections/Writing.astro';
 import Connect     from '../components/sections/Connect.astro';
 
 const year = new Date().getFullYear();
+const SHOW_ACCENT = true; // flip to false to hide the terracotta dot
 ---
 
 <Layout darkHero={true}>
@@ -34,7 +35,7 @@ const year = new Date().getFullYear();
         <!-- Left column — text (55%) -->
         <div class="w-full md:w-[55%] flex flex-col py-28 md:py-0 md:pr-16">
 
-          <div class="overflow-hidden mb-8">
+          <div class="overflow-hidden mb-6">
             <h1
               class="hero-name font-sans font-black leading-none tracking-tight"
               style="font-size: clamp(4rem,9vw,9rem); line-height: 0.92; letter-spacing: -0.03em; color: var(--color-text-hero);"
@@ -43,20 +44,14 @@ const year = new Date().getFullYear();
             </h1>
           </div>
 
-          <p
-            class="hero-tagline font-serif italic mb-5"
-            style="font-size: clamp(1.25rem,1.8vw,1.75rem); color: var(--color-text-hero-2); font-variation-settings: 'opsz' 48; line-height: 1.35;"
-          >
-            Most enterprise AI fails at deployment,<br />
-            not strategy. I work on the deployment.
-          </p>
-
-          <p
-            class="hero-sub text-sm leading-relaxed max-w-sm"
-            style="color: var(--color-text-hero-3)"
-          >
-            Building internal tools and agents that make knowledge workers measurably
-            better at the work that matters.
+          <p class="hero-eyebrow font-mono text-[10px] tracking-[0.18em] text-ink-3 flex items-center gap-2">
+            {SHOW_ACCENT && (
+              <span
+                style="display:inline-block;width:5px;height:5px;border-radius:50%;background:#C65D3A;flex-shrink:0;"
+                aria-hidden="true"
+              />
+            )}
+            AI STRATEGY & DEPLOYMENT
           </p>
 
         </div>
