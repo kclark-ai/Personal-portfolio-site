@@ -18,6 +18,16 @@ const projects = [
     body:   'Interactive map of every US data center overlaid with power plant fuel mix, NERC grid zones, and water stress data. Built to visualize the infrastructure dependencies of AI compute at national scale.',
     featured: true,
   },
+  {
+    num:    '03',
+    // TODO: point this at the deployed demo URL (e.g. https://claim.kevinclark.ai).
+    link:   'https://claim.kevinclark.ai',
+    title:  'Defensible Fire-Claim Assistant',
+    tags:   ['Next.js', 'TypeScript', 'Claude Vision', 'S3'],
+    status: 'Live',
+    body:   'A claims specialist uploads one photo of a fire-damaged item and gets one defensible draft claim line item — the tool identifies the item, finds a comparable product with a current price, and links every figure to a captured, timestamped snapshot. Human approves every line; nothing is auto-submitted. Try it in demo mode — no photo leaves the server.',
+    featured: true,
+  },
 ];
 
 const total = projects.length;
