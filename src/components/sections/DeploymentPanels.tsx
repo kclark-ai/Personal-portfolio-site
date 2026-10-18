@@ -11,22 +11,22 @@ const TRANSITION = {
 const PANELS = [
   {
     bg: '#1A2A3F', line1: 'DISCOVER', line2: 'THE WORKFLOW', counter: '01 / 04',
-    body: 'MOST AI STRATEGIES OPTIMIZE FOR USE CASES. THE WINNERS OPTIMIZE FOR WORKFLOWS. THE FIRST CREATES DEMOS. THE SECOND CREATES LEVERAGE. WE START BY MAPPING WHERE THE WORK ACTUALLY HAPPENS.',
+    body: "Start with the people who own the work. Map the steps, decisions, and constraints before choosing a tool.",
     illus: 'signal' as const,
   },
   {
-    bg: '#C65D3A', line1: 'BUILD', line2: 'PRODUCTION SYSTEMS', counter: '02 / 04',
-    body: "PILOTS ARE NOT DEPLOYMENT. AI THEATER IS NOT AI VALUE. PRODUCTION SYSTEMS HANDLE VOLUME, EDGE CASES, AND ORGANIZATIONAL RESISTANCE — AND KEEP WORKING WHEN THE NOVELTY WEARS OFF.",
+    bg: '#C65D3A', line1: 'BUILD', line2: 'THE SYSTEM', counter: '02 / 04',
+    body: "Design for the workflow, including integrations, human review, failure handling, and quality controls. A working pilot is the beginning of that process.",
     illus: 'concentric' as const,
   },
   {
     bg: '#7A8B6F', line1: 'EVALUATE', line2: 'THE THRESHOLD', counter: '03 / 04',
-    body: "THE EVALUATION GAP IS THE MOST UNDERREPORTED PROBLEM IN ENTERPRISE AI. HOW GOOD IS GOOD ENOUGH? THE ABSENCE OF RIGOROUS EVAL ISN'T A RESEARCH PROBLEM. IT'S A LEADERSHIP PROBLEM.",
+    body: "Define what good enough means for the task. Establish a baseline and agree on success criteria before the pilot begins.",
     illus: 'radial' as const,
   },
   {
     bg: '#8B8682', line1: 'SCALE', line2: 'ACROSS THE ORG', counter: '04 / 04',
-    body: "FLUENCY DOES NOT SCALE THROUGH TRAINING CALENDARS. IT SCALES THROUGH WORKFLOWS. SCALE HAPPENS WHEN AI BECOMES PART OF HOW WORK HAPPENS, ROLE-ANCHORED AND MEASURED AT EVERY LEVEL, NOT A NEW INITIATIVE BOLTED ON TOP.",
+    body: "Expand where the evidence supports it. Pair training with workflow changes, feedback, and clear ownership so adoption can continue after launch.",
     illus: 'wave' as const,
   },
 ];

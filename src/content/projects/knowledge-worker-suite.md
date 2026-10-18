@@ -7,7 +7,6 @@ featured: false
 summary: "A collection of AI tools targeting specific workflows where professional expertise creates the most value — and where manual effort creates the most drag."
 ---
 
-# Knowledge Worker Augmentation Suite
 
 A collection of AI tools targeting specific workflows where professional expertise creates the most value — and where manual effort creates the most drag.
 

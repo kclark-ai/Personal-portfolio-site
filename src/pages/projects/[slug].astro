@@ -4,7 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
   const entries = await getCollection('projects');
-  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+  return entries.filter(entry => entry.id !== 'autonomous-market-monitoring').map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
 }
 
 const { entry } = Astro.props;
@@ -13,7 +13,7 @@ const { title, tags, status, summary } = entry.data;
 ---
 
 <Layout title={`${title} — Kevin Clark`} description={summary}>
-  <div class="max-w-2xl mx-auto px-8 md:px-14 pt-24 pb-32">
+  <main id="main-content" class="max-w-2xl mx-auto px-8 md:px-14 pt-24 pb-32">
 
     <a
       href="/#projects"
@@ -47,5 +47,5 @@ const { title, tags, status, summary } = entry.data;
       <Content />
     </div>
 
-  </div>
+  </main>
 </Layout>

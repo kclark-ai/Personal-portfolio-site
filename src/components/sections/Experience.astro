@@ -1,67 +1,77 @@
 ---
-import ExperienceTiltCard from '../ui/ExperienceTiltCard';
-
-const tracks = [
+const roles = [
   {
-    period:   '2003 — Present',
-    duration: '10+',
-    unit:     'years',
-    label:    'Consulting',
-    heading:  'Strategy and transformation inside professional services.',
-    body:     'Deep expertise in organizational change, technology strategy, and operating model design. Working at the most complex organizations during their most consequential transformations. The discipline that taught me how organizations actually decide, resist, and adopt.',
+    company: 'Profitable Ideas Exchange', role: 'Director', dates: 'June 2023–Present',
+    paragraphs: [
+      "Lead the firm's AI strategy and transformation initiatives while managing executive advisory programs and strategic client relationships.",
+      'As Lead Client Partner for Deloitte, I oversee executive relationships, contracts, renewals, and account expansion. My work also includes executive interviews, advisory discussions, and client reporting for enterprise programs.',
+    ],
   },
   {
-    period:   '2015 — Present',
-    duration: '8+',
-    unit:     'years',
-    label:    'Product',
-    heading:  'Building things people actually rely on.',
-    body:     'Product leadership across enterprise software, internal platforms, and client-facing systems. The discipline that taught me the gap between what stakeholders ask for and what users actually need — and how to ship in the space between those two things.',
+    company: 'Grown Rogue', role: 'Partner and Director of Operations', dates: '2017–2018',
+    paragraphs: ['Led operations across three facilities generating more than $5 million in annual revenue. Managed more than 100 employees through approximately 10 direct reports, with responsibility for budgets, hiring, performance, compliance, and operational execution.'],
   },
   {
-    period:   '2021 — Present',
-    duration: '3+',
-    unit:     'years',
-    label:    'AI',
-    heading:  'Deploying AI inside organizations that can\'t afford to get it wrong.',
-    body:     'Director-level AI deployment in professional services: agents, evaluation frameworks, governance structures. The work where the other two disciplines converge — strategy depth, product instinct, and the technical fluency to know what\'s actually possible.',
+    company: 'HLNG Wellness', role: 'Co-Founder and Head of Product', dates: '2018–2023',
+    paragraphs: ['Co-founded a consumer products business and developed more than 15 products sold nationally. Led product strategy, development, manufacturing partnerships, regulatory compliance, and commercialization.'],
+  },
+];
+const programs = [
+  {
+    name: 'Deloitte Cyber Advisory Council',
+    paragraphs: [
+      "I lead Deloitte's Cyber Advisory Council, a client advisory board of 10 CISOs representing major Deloitte cybersecurity clients. I recruit members, interview each executive, determine discussion priorities, facilitate roundtables, and develop reports for Deloitte's cybersecurity leadership and account teams.",
+      'Topics have included cyber resilience, AI-related threats, third-party risk, enterprise risk governance, and the expanding responsibilities of CISOs.',
+      'Deloitte has reported that the program helps shorten sales cycles and inform new service offerings. This is client feedback, rather than an independently measured financial result.',
+    ],
+  },
+  {
+    name: 'IBM Executive Exchanges',
+    paragraphs: ['I have led IBM executive exchanges engaging senior technology leaders across federal government and commercial industries, including the Federal CIO Exchange, CIO/CTO Exchange, Emerging CIO Exchange, Chief AI Office Exchange, and Energy & Utilities Exchange.', 'These examples include programs whose contracts have concluded.'],
+  },
+  {
+    name: 'BDO Executive Programs',
+    paragraphs: ['I led the BDO Private Equity Healthcare Exchange, working with senior executives on business and industry priorities.'],
+  },
+  {
+    name: 'Executive content and advocacy',
+    paragraphs: ['Across these programs, I author client-facing reports, executive summaries, participant reports, and strategic recommendations. I coordinate technical reviews with subject-matter experts and manage client revisions and final approvals.', 'I also help CISOs prepare for and secure speaking opportunities, including developing executive biographies, profiles, and presentation materials.'],
   },
 ];
 ---
-
 <section id="experience" aria-labelledby="experience-heading" class="border-t border-rule py-24 md:py-32">
-
-  <header class="mb-14 fade-up">
+  <header class="mb-12">
     <p class="font-mono text-[10px] tracking-[0.18em] text-ink-3 mb-3">// 02 — EXPERIENCE</p>
-    <h2
-      id="experience-heading"
-      class="font-serif font-light text-[clamp(1.6rem,3.2vw,2.6rem)] text-ink leading-snug"
-      style="font-variation-settings: 'opsz' 72"
-    >
-      Twenty-one years across consulting, product, and AI.
-    </h2>
+    <h2 id="experience-heading" class="font-serif font-light text-[clamp(1.6rem,3.2vw,2.6rem)] text-ink">Selected Experience</h2>
+    <div class="flex flex-wrap gap-x-6 gap-y-3 mt-6 text-xs text-ink-3 font-mono">
+      <a class="link-draw" href="#executive-advisory">Executive advisory ↓</a>
+      <a class="link-draw" href="#ai-practice">AI strategy in practice ↓</a>
+    </div>
   </header>
-
-  <div class="experience-grid grid md:grid-cols-3 fade-up delay-1">
-    {tracks.map((t) => (
-      <ExperienceTiltCard
-        period={t.period}
-        duration={t.duration}
-        unit={t.unit}
-        label={t.label}
-        heading={t.heading}
-        body={t.body}
-        client:visible
-      />
+  <div class="divide-y divide-rule">
+    {roles.map(role => (
+      <article class="grid md:grid-cols-[200px_1fr] gap-5 md:gap-10 py-9">
+        <div>
+          <p class="font-mono text-[10px] tracking-[0.08em] text-ink-3 mb-3">{role.dates}</p>
+          <h3 class="font-serif text-xl text-ink mb-2">{role.company}</h3>
+          <p class="text-xs text-ink-3 leading-relaxed">{role.role}</p>
+        </div>
+        <div class="space-y-4 text-sm text-ink-2 leading-relaxed">{role.paragraphs.map(p => <p>{p}</p>)}</div>
+      </article>
     ))}
   </div>
-
-  <p
-    class="font-serif italic text-[clamp(1rem,2vw,1.35rem)] text-ink-2 mt-12 max-w-2xl fade-up delay-2"
-    style="font-variation-settings: 'opsz' 48"
-  >
-    "Strategy depth. Product instinct. AI fluency.
-    Twenty-one years building toward a moment where all three matter at once."
-  </p>
-
+  <a href="https://www.linkedin.com/in/kevinclarkai/" target="_blank" rel="noopener noreferrer" class="link-draw text-xs text-ink-3">Additional career history on LinkedIn ↗</a>
+  <div id="executive-advisory" class="border-t border-rule mt-16 pt-12">
+    <h3 class="font-serif text-2xl md:text-3xl text-ink mb-6">Executive Advisory &amp; Customer Engagement</h3>
+    <div class="space-y-4 text-sm text-ink-2 leading-relaxed mb-8 max-w-2xl">
+      <p>I develop and lead executive advisory boards and peer communities for clients of Profitable Ideas Exchange. The work begins with recruiting members and understanding their priorities, then continues through individual interviews, roundtable discussions, executive reporting, and client follow-up.</p>
+      <p>Deloitte, IBM, and BDO are clients of PIE. The programs described here include current and completed engagements. Their insights help clients understand customer priorities, strengthen relationships, and inform commercial strategy.</p>
+    </div>
+    {programs.map((program, i) => (
+      <details class="border-t border-rule py-5" open={i === 0}>
+        <summary class="font-serif text-xl text-ink cursor-pointer">{program.name}</summary>
+        <div class="space-y-4 text-sm text-ink-2 leading-relaxed mt-5 max-w-2xl">{program.paragraphs.map(p => <p>{p}</p>)}</div>
+      </details>
+    ))}
+  </div>
 </section>

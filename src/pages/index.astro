@@ -4,6 +4,8 @@ import Navigation  from '../components/ui/Navigation';
 import ParticleField from '../components/hero/ParticleField';
 import CurtainReveal from '../components/hero/CurtainReveal';
 import About       from '../components/sections/About.astro';
+import Experience from '../components/sections/Experience.astro';
+import AIStrategy from '../components/sections/AIStrategy.astro';
 import Domains     from '../components/sections/Domains.astro';
 import Manifesto   from '../components/sections/Manifesto.astro';
 import Deployment  from '../components/sections/Deployment.astro';
@@ -24,7 +26,7 @@ const SHOW_ACCENT = true; // flip to false to hide the terracotta dot
   <section
     id="hero"
     class="relative w-full flex items-center"
-    style="height: 100vh; z-index: 10; background-color: var(--color-bg-dark);"
+    style="min-height: 100svh; z-index: 10; background-color: var(--color-bg-dark);"
     aria-label="Introduction"
   >
 
@@ -36,23 +38,25 @@ const SHOW_ACCENT = true; // flip to false to hide the terracotta dot
         <div class="w-full md:w-[55%] flex flex-col py-28 md:py-0 md:pr-16">
 
           <div class="overflow-hidden mb-6">
-            <h1
+            <p
               class="hero-name font-sans font-black leading-none tracking-tight"
               style="font-size: clamp(4rem,9vw,9rem); line-height: 0.92; letter-spacing: -0.03em; color: var(--color-text-hero);"
             >
               Kevin Clark
-            </h1>
+            </p>
           </div>
 
-          <p class="hero-eyebrow font-mono text-[10px] tracking-[0.18em] text-ink-3 flex items-center gap-2">
+          <h1 class="hero-eyebrow font-serif text-3xl md:text-4xl text-[#E8DFC9] flex items-center gap-2">
             {SHOW_ACCENT && (
               <span
                 style="display:inline-block;width:5px;height:5px;border-radius:50%;background:#C65D3A;flex-shrink:0;"
                 aria-hidden="true"
               />
             )}
-            AI STRATEGY & DEPLOYMENT
-          </p>
+            AI Strategy &amp; Transformation
+          </h1>
+          <p class="hero-sub text-base md:text-lg leading-relaxed text-[#A8A095] mt-6 max-w-xl">I lead AI strategy and organizational transformation, with a background in executive advisory programs, commercial leadership, and building technology that changes how teams work.</p>
+          <p class="font-mono text-[10px] tracking-[0.12em] text-[#A8A095] mt-6">Director · Profitable Ideas Exchange</p>
 
         </div>
 
@@ -78,8 +82,9 @@ const SHOW_ACCENT = true; // flip to false to hide the terracotta dot
     <div class="max-w-5xl mx-auto px-8 md:px-14">
 
       <About />
+      <Experience />
+      <AIStrategy />
       <Domains />
-      <Manifesto />
 
     </div>
 
@@ -91,6 +96,7 @@ const SHOW_ACCENT = true; // flip to false to hide the terracotta dot
 
       <Projects />
       <Writing />
+      <Manifesto />
       <Connect />
 
       <!-- ─── Footer ─────────────────────────────────────────── -->

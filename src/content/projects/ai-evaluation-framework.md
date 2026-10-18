@@ -7,7 +7,6 @@ featured: false
 summary: "An open framework for evaluating LLM outputs against domain-specific quality criteria. Designed to address the threshold problem: what does 'good enough' mean for high-stakes professional work?"
 ---
 
-# AI Evaluation Framework
 
 An open framework for evaluating LLM outputs against domain-specific quality criteria.
 

@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 ---
-<Layout title="Autonomous Market Monitoring System — Kevin Clark" description="A production AI agent that observes market conditions, evaluates signals, manages risk, and executes paper trades without human intervention — every hour the market is open.">
+<Layout title="Autonomous Market Monitoring System — Kevin Clark" description="An independent market-monitoring project with an interactive strategy simulator using synthetic market data.">
 <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -107,34 +107,35 @@ import Layout from '../../layouts/Layout.astro';
     }
 </style>
 <div class="page-wrap">
+<main id="main-content">
 <nav class="nav">
   <a href="/#projects" class="nav-back">← Kevin Clark</a>
-  <div class="nav-status"><div class="status-dot"></div>Paper trading · Live</div>
+  <div class="nav-status"><div class="status-dot"></div>Strategy simulator</div>
 </nav>
 
 <section class="hero">
-  <div class="hero-tag">Project 01 &nbsp;·&nbsp; Shipped</div>
+  <div class="hero-tag">Project 01 &nbsp;·&nbsp; Independent project</div>
   <h1>Autonomous Market<br>Monitoring System</h1>
-  <p class="hero-sub">A production AI agent that observes market conditions, evaluates signals, manages risk, and executes paper trades without human intervention — every hour the market is open.</p>
+  <p class="hero-sub">An independent market-monitoring project with an interactive strategy simulator using synthetic market data.</p>
   <div class="hero-metrics">
-    <div class="metric"><div class="metric-label">Status</div><div class="metric-value accent">Live</div></div>
+    <div class="metric"><div class="metric-label">Status</div><div class="metric-value accent">Demo</div></div>
     <div class="metric"><div class="metric-label">Equities watched</div><div class="metric-value">10</div></div>
     <div class="metric"><div class="metric-label">Tick frequency</div><div class="metric-value">1 hr</div></div>
-    <div class="metric"><div class="metric-label">Backtest return</div><div class="metric-value green">+7.4%</div></div>
+    <div class="metric"><div class="metric-label">Simulation data</div><div class="metric-value">Synthetic</div></div>
   </div>
 </section>
 
 <section class="section">
   <div class="section-tag">// 01 — What it is</div>
-  <h2>Not a demo. A running system.</h2>
-  <p>Most AI projects in a portfolio are prototypes — things that worked once, in a controlled environment, on a good day. This is not that.</p>
-  <p>This system runs on the Alpaca Markets paper trading API, pulls live market data every hour, evaluates 10 equities against a multi-signal strategy, and places real simulated orders. The dashboard updates in real time. The risk manager has hard limits. The trade log persists across sessions.</p>
-  <p>It was built, debugged, backtested, and parameter-tuned in a single session. The parameters running live today were selected after a sweep across 4 configurations and 365 days of hourly data across 4 symbols.</p>
+  <h2>A market-monitoring architecture.</h2>
+  <p>This independent project explores a decision loop: ingest market data, evaluate signals, manage state, apply risk rules, and observe outcomes.</p>
+  <p>The architecture describes an Alpaca paper-trading integration with a signal engine, risk layer, state store, and monitoring dashboard. The public page demonstrates a simplified strategy simulator; current operation of the separate trading service is not verified here.</p>
+  <p>Simulation results depend on generated prices and parameters. They are not historical returns or evidence of current trading performance.</p>
   <div class="arch">
     <div class="arch-cell"><div class="arch-num">01</div><div class="arch-title">Data ingestion</div><div class="arch-body">Alpaca Markets API pulls hourly OHLCV bars for all 10 symbols. 60-bar rolling window. IEX feed.</div></div>
     <div class="arch-cell"><div class="arch-num">02</div><div class="arch-title">Signal engine</div><div class="arch-body">RSI(14), SMA crossover (9/21), 50-bar trend filter, MACD histogram. Requires confluence — no single-indicator trades.</div></div>
     <div class="arch-cell"><div class="arch-num">03</div><div class="arch-title">Risk layer</div><div class="arch-body">Hard stop-loss at 3%. Trailing stop at 3.5%. Daily loss circuit breaker at 5% of portfolio. Position size capped at 10%.</div></div>
-    <div class="arch-cell"><div class="arch-num">04</div><div class="arch-title">Execution</div><div class="arch-body">Market orders via Alpaca. Paper trading mode. Configurable for live with a single env variable change.</div></div>
+    <div class="arch-cell"><div class="arch-num">04</div><div class="arch-title">Execution</div><div class="arch-body">Market orders via Alpaca. Paper trading mode. Paper-trading integration design.</div></div>
     <div class="arch-cell"><div class="arch-num">05</div><div class="arch-title">State management</div><div class="arch-body">Thread-safe state store tracks positions, peak prices, bars held, cooldown periods, and trade history.</div></div>
     <div class="arch-cell"><div class="arch-num">06</div><div class="arch-title">Dashboard</div><div class="arch-body">Flask API + vanilla JS frontend. Auto-refreshes every 30s. Stop/Start bot controls. Accessible on local network.</div></div>
   </div>
@@ -145,7 +146,7 @@ import Layout from '../../layouts/Layout.astro';
   <h2>How the bot decides.</h2>
   <p>Every hourly tick runs each symbol through the same decision tree. The strategy requires multiple conditions to align — it doesn't trade noise.</p>
   <div class="signal-flow">
-    <div class="signal-row"><div class="signal-icon">01</div><div class="signal-content"><div class="signal-title">Trend filter</div><p class="signal-desc">Price must be above the 50-bar SMA. No buys in downtrending stocks. This single filter eliminates the majority of losing setups.</p></div><div class="signal-tag">Required</div></div>
+    <div class="signal-row"><div class="signal-icon">01</div><div class="signal-content"><div class="signal-title">Trend filter</div><p class="signal-desc">Price must be above the 50-bar SMA. No buys in downtrending stocks. This filter restricts entries to prices above the selected trend average.</p></div><div class="signal-tag">Required</div></div>
     <div class="signal-row"><div class="signal-icon">02</div><div class="signal-content"><div class="signal-title">RSI dip entry</div><p class="signal-desc">RSI(14) below 40 signals a short-term oversold condition within an uptrend. Buying weakness, not strength.</p></div><div class="signal-tag">OR</div></div>
     <div class="signal-row"><div class="signal-icon">03</div><div class="signal-content"><div class="signal-title">MA crossover + MACD confirmation</div><p class="signal-desc">9-bar SMA crossing above 21-bar SMA, confirmed by positive MACD histogram. Momentum-based entry requiring two signals to agree.</p></div><div class="signal-tag">OR</div></div>
     <div class="signal-row"><div class="signal-icon">04</div><div class="signal-content"><div class="signal-title">Exit: trailing stop</div><p class="signal-desc">Once in a position, peak price is tracked. A 3.5% drop from peak triggers exit. Locks in gains on winners, limits losses on losers.</p></div><div class="signal-tag">Exit</div></div>
@@ -156,22 +157,22 @@ import Layout from '../../layouts/Layout.astro';
 <section class="section">
   <div class="section-tag">// 03 — Interactive backtest</div>
   <h2>Run the strategy yourself.</h2>
-  <p>Adjust the parameters and see how strategy behavior changes. Runs the actual trading logic against synthetic market data generated from real statistical properties.</p>
+  <p>Adjust the parameters and see how strategy behavior changes. The illustrative simulation runs in your browser against generated synthetic prices. It does not place orders, connect to a live account, or reproduce a historical backtest.</p>
   <div class="simulator">
     <div class="sim-header">
       <span class="sim-title">Strategy simulator — synthetic data</span>
-      <span class="sim-title" style="color: var(--text-3); font-size: 10px;">Not financial advice</span>
+      <span class="sim-title" style="color: var(--text-3); font-size: 10px;">Synthetic data · illustrative results</span>
     </div>
     <div class="sim-body">
       <div class="sim-controls">
-        <div class="control-group"><label>Symbol profile</label><select id="symbolSelect"><option value="growth">High growth (NVDA-like)</option><option value="stable">Stable large cap (AAPL-like)</option><option value="volatile">High volatility (PLTR-like)</option><option value="sideways">Sideways / choppy (QCOM-like)</option></select></div>
-        <div class="control-group"><label>RSI oversold threshold</label><div class="range-row"><input type="range" id="rsiSlider" min="25" max="50" value="40" step="1"/><span class="range-val" id="rsiVal">40</span></div></div>
-        <div class="control-group"><label>Trailing stop %</label><div class="range-row"><input type="range" id="trailSlider" min="1" max="8" value="3.5" step="0.5"/><span class="range-val" id="trailVal">3.5%</span></div></div>
-        <div class="control-group"><label>Min hold bars</label><div class="range-row"><input type="range" id="holdSlider" min="1" max="10" value="3" step="1"/><span class="range-val" id="holdVal">3</span></div></div>
-        <div class="control-group"><label>Position size %</label><div class="range-row"><input type="range" id="sizeSlider" min="5" max="25" value="10" step="1"/><span class="range-val" id="sizeVal">10%</span></div></div>
-        <div class="control-group"><label>Cooldown bars</label><div class="range-row"><input type="range" id="coolSlider" min="1" max="6" value="2" step="1"/><span class="range-val" id="coolVal">2</span></div></div>
+        <div class="control-group"><label for="symbolSelect">Symbol profile</label><select id="symbolSelect"><option value="growth">High growth (NVDA-like)</option><option value="stable">Stable large cap (AAPL-like)</option><option value="volatile">High volatility (PLTR-like)</option><option value="sideways">Sideways / choppy (QCOM-like)</option></select></div>
+        <div class="control-group"><label for="rsiSlider">RSI oversold threshold</label><div class="range-row"><input type="range" id="rsiSlider" min="25" max="50" value="40" step="1"/><span class="range-val" id="rsiVal">40</span></div></div>
+        <div class="control-group"><label for="trailSlider">Trailing stop %</label><div class="range-row"><input type="range" id="trailSlider" min="1" max="8" value="3.5" step="0.5"/><span class="range-val" id="trailVal">3.5%</span></div></div>
+        <div class="control-group"><label for="holdSlider">Min hold bars</label><div class="range-row"><input type="range" id="holdSlider" min="1" max="10" value="3" step="1"/><span class="range-val" id="holdVal">3</span></div></div>
+        <div class="control-group"><label for="sizeSlider">Position size %</label><div class="range-row"><input type="range" id="sizeSlider" min="5" max="25" value="10" step="1"/><span class="range-val" id="sizeVal">10%</span></div></div>
+        <div class="control-group"><label for="coolSlider">Cooldown bars</label><div class="range-row"><input type="range" id="coolSlider" min="1" max="6" value="2" step="1"/><span class="range-val" id="coolVal">2</span></div></div>
       </div>
-      <button class="run-btn" id="runBtn" onclick="runSim()">Run Backtest — 365 days</button>
+      <button class="run-btn" id="runBtn">Run synthetic simulation</button>
       <div class="sim-results">
         <div class="result-card"><div class="result-label">Total return</div><div class="result-value" id="res-return">—</div></div>
         <div class="result-card"><div class="result-label">Total trades</div><div class="result-value" id="res-trades">—</div></div>
@@ -190,7 +191,7 @@ import Layout from '../../layouts/Layout.astro';
 <section class="section">
   <div class="section-tag">// 04 — Risk management</div>
   <h2>The guardrails.</h2>
-  <p>Every autonomous system that touches money needs hard limits that can't be reasoned around. These are the live parameters running on the paper account today.</p>
+  <p>Every autonomous system that touches money needs hard limits that can't be reasoned around. The design below describes risk controls for a paper-trading system. The browser simulator illustrates stop-loss, trailing-stop, and position-sizing behavior; it does not implement every control shown here.</p>
   <div class="risk-grid">
     <div class="risk-cell"><div class="risk-label">Hard stop-loss</div><div class="risk-value">3.0%</div><p class="risk-desc">Maximum loss per position before forced exit. No exceptions, no overrides.</p></div>
     <div class="risk-cell"><div class="risk-label">Trailing stop</div><div class="risk-value">3.5%</div><p class="risk-desc">Tracks peak price from entry. Locks in gains as the position moves in your favor.</p></div>
@@ -202,8 +203,8 @@ import Layout from '../../layouts/Layout.astro';
 <section class="section">
   <div class="section-tag">// 05 — What this demonstrates</div>
   <h2>The point is the deployment.</h2>
-  <p>This isn't an AI strategy exercise. It's a production deployment of an autonomous decision-making agent — with a data pipeline, a signal engine, a risk layer, a state manager, an API integration, and a monitoring interface.</p>
-  <p>That stack is structurally identical to any enterprise AI agent: ingest data, evaluate against rules, manage state, execute actions, observe outputs. The domain is financial markets. The pattern is universal.</p>
+  <p>The project brings together data ingestion, rule-based decisions, risk controls, and an interactive interface. It is separate from my employer and client work.</p>
+  <p>One useful architectural comparison is: ingest data, evaluate against rules, manage state, execute actions, observe outputs. The domain is financial markets. The same broad pattern can inform other automated workflows.</p>
   <div class="code-block">
 <span class="comment"># The core decision loop — runs every hour the market is open</span><br><br>
 <span class="keyword">def</span> <span class="fn">get_signal</span>(df, bars_held, bars_since_exit, in_position):<br>
@@ -231,6 +232,7 @@ import Layout from '../../layouts/Layout.astro';
     <a href="/" class="footer-link">Home ↗</a>
   </div>
 </footer>
+</main>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -292,8 +294,9 @@ function runSim(){
     const logEl=$('tradeLog');const rowsEl=$('tradeRows');logEl.style.display='block';
     const recentTrades=trades.filter(t=>t.pnl!==null).slice(-30).reverse();
     rowsEl.innerHTML=recentTrades.map(t=>{const pnlStr=t.pnl!==null?(t.pnl>=0?'+$':'-$')+Math.abs(Math.round(t.pnl)).toLocaleString():'—';const pnlClass=t.pnl!==null?(t.pnl>=0?'pos':'neg'):'';return `<div class="trade-row ${t.action.toLowerCase()}"><span>${t.bar}</span><span class="action">${t.action}</span><span>$${t.price.toFixed(2)} <span style="color:var(--text-3);font-size:10px;">${t.reason}</span></span><span>—</span><span class="pnl ${pnlClass}">${pnlStr}</span></div>`;}).join('');
-    btn.disabled=false;btn.textContent='Run Backtest — 365 days';
+    btn.disabled=false;btn.textContent='Run synthetic simulation';
   },50);
 }
+document.getElementById('runBtn')?.addEventListener('click', runSim);
 </script>
 </Layout>

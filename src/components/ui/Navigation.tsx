@@ -2,9 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 
 const SECTIONS = [
   { id: 'about',      label: 'About' },
-  { id: 'domains',    label: 'Domains' },
-  { id: 'manifesto',   label: 'Manifesto' },
-  { id: 'deployment',  label: 'Deployment' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'domains', label: 'Expertise' },
   { id: 'projects',    label: 'Projects' },
   { id: 'writing',    label: 'Writing' },
   { id: 'connect',    label: 'Connect' },
@@ -102,7 +101,7 @@ export default function Navigation() {
         </a>
 
         {/* Desktop section nav */}
-        <nav className="hidden md:flex items-center gap-7" aria-label="Site sections">
+        <nav className="hidden lg:flex items-center gap-5" aria-label="Site sections">
           {SECTIONS.map((s) => (
             <a
               key={s.id}
@@ -120,19 +119,22 @@ export default function Navigation() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-[5px]"
+          className="lg:hidden flex flex-col justify-center items-center w-8 h-8 gap-[5px]"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navigation"
+          onKeyDown={e => { if (e.key === 'Escape') setMenuOpen(false); }}
         >
-          <span className={`block w-5 h-px transition-all duration-300 bg-[#F5F0E6] ${menuOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
-          <span className={`block w-5 h-px transition-all duration-300 bg-[#F5F0E6] ${menuOpen ? 'opacity-0' : ''}`} />
-          <span className={`block w-5 h-px transition-all duration-300 bg-[#F5F0E6] ${menuOpen ? '-rotate-45 -translate-y-[6px]' : ''}`} />
+          <span className={`block w-5 h-px transition-all duration-300 ${isHero ? 'bg-[#F5F0E6]' : 'bg-ink'} ${menuOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
+          <span className={`block w-5 h-px transition-all duration-300 ${isHero ? 'bg-[#F5F0E6]' : 'bg-ink'} ${menuOpen ? 'opacity-0' : ''}`} />
+          <span className={`block w-5 h-px transition-all duration-300 ${isHero ? 'bg-[#F5F0E6]' : 'bg-ink'} ${menuOpen ? '-rotate-45 -translate-y-[6px]' : ''}`} />
         </button>
       </div>
 
       {menuOpen && (
-        <div className={`md:hidden border-t ${isHero ? 'border-white/10 bg-[#0A0E1A]' : 'border-rule bg-parchment'}`}>
-          <nav className="max-w-5xl mx-auto px-8 py-6 flex flex-col gap-5">
+        <div className={`lg:hidden border-t ${isHero ? 'border-white/10 bg-[#0A0E1A]' : 'border-rule bg-parchment'}`}>
+          <nav id="mobile-navigation" aria-label="Mobile site sections" onKeyDown={e => { if (e.key === 'Escape') setMenuOpen(false); }} className="max-w-5xl mx-auto px-8 py-6 flex flex-col gap-5">
             {SECTIONS.map((s) => (
               <a
                 key={s.id}

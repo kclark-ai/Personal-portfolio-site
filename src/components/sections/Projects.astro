@@ -5,17 +5,17 @@ const projects = [
     slug:   'autonomous-market-monitoring',
     title:  'Autonomous Market Monitoring System',
     tags:   ['Python', 'Alpaca API', 'pandas', 'Flask', 'Plotly'],
-    status: 'Live',
-    body:   'A production AI agent that observes market conditions, evaluates signals, manages risk, and executes paper trades without human intervention — every hour the market is open.',
+    status: 'Interactive demo',
+    body:   'A market-monitoring project with an interactive strategy simulator. Adjust signal and risk parameters to explore behavior on synthetic market data.',
     featured: true,
   },
   {
     num:    '02',
     link:   'https://map.kevinclark.ai',
-    title:  'US Data Center Power Map',
+    title:  'Compute Atlas',
     tags:   ['Astro', 'React', 'Mapbox GL JS', 'Energy Infrastructure'],
-    status: 'Live',
-    body:   'Interactive map of every US data center overlaid with power plant fuel mix, NERC grid zones, and water stress data. Built to visualize the infrastructure dependencies of AI compute at national scale.',
+    status: 'Research preview',
+    body:   'A public research atlas of US data centers, generation, historical grid regions, reported water use, and watershed context. Sources and verification limits accompany the data.',
     featured: true,
   },
 ];
@@ -32,7 +32,7 @@ function dotClass(status: string) {
 <section id="projects" aria-labelledby="projects-heading" class="border-t border-rule py-24 md:py-32">
 
   <header class="mb-14 fade-up">
-    <p class="font-mono text-[10px] tracking-[0.18em] text-ink-3 mb-3">// 05 — PUBLIC PROJECTS</p>
+    <p class="font-mono text-[10px] tracking-[0.18em] text-ink-3 mb-3">// 06 — INDEPENDENT PROJECTS</p>
     <h2
       id="projects-heading"
       class="font-serif font-light text-[clamp(1.6rem,3.2vw,2.6rem)] text-ink leading-tight"
@@ -41,8 +41,7 @@ function dotClass(status: string) {
       Building in the open.
     </h2>
     <p class="text-sm text-ink-3 mt-3 max-w-lg leading-relaxed">
-      Documenting what I build outside of work — production systems, not prototypes.
-      Shipped publicly with the code, the reasoning, and real performance data.
+      Independent technical projects exploring automation, decision systems, and the infrastructure behind AI. Developed outside my work at Profitable Ideas Exchange.
     </p>
   </header>
 

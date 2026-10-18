@@ -7,7 +7,7 @@ const projects = defineCollection({
     title:    z.string(),
     num:      z.string(),
     tags:     z.array(z.string()),
-    status:   z.enum(['Live', 'In development', 'Planned']),
+    status:   z.enum(['Live', 'Interactive demo', 'In development', 'Planned']),
     featured: z.boolean().default(false),
     summary:  z.string(),
   }),

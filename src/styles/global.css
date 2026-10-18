@@ -14,7 +14,7 @@
   /* Semantic color tokens */
   --color-ink:        #0A0A0A;
   --color-ink-2:      #525252;
-  --color-ink-3:      #A1A1A1;
+  --color-ink-3:      #70706B;
   --color-parchment:  #FAFAF7;
   --color-parchment-2:#F3F2EF;
   --color-rule:       #E8E6E1;
@@ -63,8 +63,8 @@ body {
 
 /* ─── Section scroll fades ───────────────────────────────── */
 .fade-up {
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1;
+  transform: none;
   transition: opacity 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -377,3 +377,12 @@ body {
   .wave-path { animation: none; }
   .domain-desc, .domain-pov, .domain-glyph { transition: none; }
 }
+
+section[id], div[id] { scroll-margin-top: 4rem; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--color-oxblood); outline-offset: 4px; }
+@media (hover: none) { #writing a p { max-height: none; opacity: 1; } #writing a > div:last-child { opacity: 1; } }
+#writing a:focus-visible p { max-height: none; opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .illus-group, .wave-path { animation: none !important; } .project-card:hover { transform: none; } }
+
+.fade-up.will-reveal:not(.in-view) { opacity: 0; transform: translateY(20px); }
+@media (prefers-reduced-motion: reduce) { .fade-up.will-reveal:not(.in-view) { opacity: 1; transform: none; } }
