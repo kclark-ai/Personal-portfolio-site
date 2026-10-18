@@ -41,7 +41,7 @@ const programs = [
 ---
 <section id="experience" aria-labelledby="experience-heading" class="border-t border-rule py-24 md:py-32">
   <header class="mb-12">
-    <p class="font-mono text-[10px] tracking-[0.18em] text-ink-3 mb-3">// 02 — EXPERIENCE</p>
+    <p class="font-mono text-[10px] tracking-[0.18em] text-ink-3 mb-3">// 03 — EXPERIENCE</p>
     <h2 id="experience-heading" class="font-serif font-light text-[clamp(1.6rem,3.2vw,2.6rem)] text-ink">Selected Experience</h2>
     <div class="flex flex-wrap gap-x-6 gap-y-3 mt-6 text-xs text-ink-3 font-mono">
       <a class="link-draw" href="#executive-advisory">Executive advisory ↓</a>
@@ -68,7 +68,7 @@ const programs = [
       <p>Deloitte, IBM, and BDO are clients of PIE. The programs described here include current and completed engagements. Their insights help clients understand customer priorities, strengthen relationships, and inform commercial strategy.</p>
     </div>
     {programs.map((program, i) => (
-      <details class="border-t border-rule py-5" open={i === 0}>
+      <details class="border-t border-rule py-5" open={false}>
         <summary class="font-serif text-xl text-ink cursor-pointer">{program.name}</summary>
         <div class="space-y-4 text-sm text-ink-2 leading-relaxed mt-5 max-w-2xl">{program.paragraphs.map(p => <p>{p}</p>)}</div>
       </details>

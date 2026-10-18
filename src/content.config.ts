@@ -7,7 +7,7 @@ const projects = defineCollection({
     title:    z.string(),
     num:      z.string(),
     tags:     z.array(z.string()),
-    status:   z.enum(['Live', 'Interactive demo', 'In development', 'Planned']),
+    status:   z.enum(['Live', 'Interactive demo', 'Research preview', 'In development', 'Planned']),
     featured: z.boolean().default(false),
     summary:  z.string(),
   }),
@@ -25,4 +25,8 @@ const writing = defineCollection({
   }),
 });
 
-export const collections = { projects, writing };
+const work = defineCollection({
+  loader: glob({pattern: '**/*.md', base: './src/content/work'}),
+  schema: z.object({title:z.string(),category:z.string(),role:z.string(),summary:z.string()}),
+});
+export const collections = { projects, writing, work };
