@@ -21,7 +21,6 @@ function fillChaos(arr: Float32Array, count: number) {
 }
 
 export default function ParticleField() {
-  const [motionPaused,setMotionPaused]=useState(false);
   const [reducedMotion,setReducedMotion]=useState(false);
   useEffect(()=>{const media=window.matchMedia('(prefers-reduced-motion: reduce)');const sync=()=>setReducedMotion(media.matches);sync();media.addEventListener('change',sync);return()=>media.removeEventListener('change',sync)},[]);
   const mountRef = useRef<HTMLDivElement>(null);
@@ -94,13 +93,13 @@ export default function ParticleField() {
       camera.aspect = mount.clientWidth / mount.clientHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(mount.clientWidth, mount.clientHeight);
-      if(motionPaused||reducedMotion)renderer.render(scene,camera);
+      if(reducedMotion)renderer.render(scene,camera);
     });
     ro.observe(mount);
 
     // ── Reduced motion: static sphere, single render ──────────
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced || reducedMotion || motionPaused) {
+    if (prefersReduced || reducedMotion) {
       currentPos.set(spherePos);
       posAttr.needsUpdate = true;
       renderer.render(scene, camera);
@@ -143,7 +142,8 @@ export default function ParticleField() {
 
 
       const elapsed = (ts - startTs) / 1000;
-      const cycleT  = elapsed % CYCLE;
+      const finished = elapsed >= 3.5;
+      const cycleT = finished ? ORG_END : elapsed * 2;
 
       // New cycle: regenerate chaos so dissolution never returns to same cloud
       if (prevCycleT > CYCLE - 0.1 && cycleT < 0.5) {
@@ -196,7 +196,7 @@ export default function ParticleField() {
       points.rotation.x = rotX;
 
       renderer.render(scene, camera);
-      rafId = requestAnimationFrame(tick);
+      if (!finished) rafId = requestAnimationFrame(tick);
     }
 
     syncAnimation();
@@ -212,12 +212,11 @@ export default function ParticleField() {
       renderer.dispose();
       if (mount.contains(renderer.domElement)) mount.removeChild(renderer.domElement);
     };
-  }, [motionPaused,reducedMotion]);
+  }, [reducedMotion]);
 
   return (
     <div className="relative w-full h-full">
       <div ref={mountRef} className="w-full h-full" aria-hidden="true" />
-      {reducedMotion?<span className="particle-control">Motion reduced</span>:<button className="particle-control" type="button" aria-pressed={motionPaused} onClick={()=>setMotionPaused(v=>!v)}>{motionPaused?'Resume animation':'Pause animation'}</button>}
     </div>
   );
 }
