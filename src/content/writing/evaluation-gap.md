@@ -16,7 +16,7 @@ The misallocation runs larger than most executives realize because it is invisib
 
 ## The three ways organizations fail to evaluate
 
-In my work running AI strategy and deployment for a professional services firm, and in the executive communities I facilitate where enterprise leaders compare notes on exactly these decisions, I see the same three failure patterns over and over. They are patterns to look for when an AI investment stalls.
+Three failure patterns are useful to look for when an AI investment stalls.
 
 **Optimistic deployment.** The organization ships without any evaluation framework at all. The demo was impressive, the vendor's case studies were impressive, and the implicit theory is that value will be obvious once people start using it. This pattern fails quietly, which is the worst way to fail. There is no moment when the tool is declared dead. Usage just decays, the champion changes roles, and eighteen months later someone in finance asks what this line item is. Because no baseline was ever captured, nobody can say what the tool was supposed to improve, which means nobody can say whether it did. The investment is unfalsifiable, and unfalsifiable investments are how budgets die.
 
@@ -28,11 +28,11 @@ In my work running AI strategy and deployment for a professional services firm, 
 
 In my work, four evaluation practices help make adoption and investment decisions more concrete.
 
-**Baseline before anything.** You cannot measure improvement against a workflow you never measured. Before our largest redesign, we pulled activity data from Salesforce to quantify exactly how many hours were going into the meetings we suspected were low-value. That number became the baseline, and the baseline is what made the eventual result, capacity released for other work, a result we could assess against the original workflow. The discipline of capturing the baseline does something else as well: it forces the team to articulate, in numbers, what problem the tool is supposed to solve. A surprising number of proposed deployments do not survive that conversation, which is the cheapest possible place for them to die.
+**Baseline before anything.** You cannot measure improvement against a workflow you never measured. Record the time, review effort and quality of the existing process before introducing a new system. The baseline gives the pilot something concrete to improve and forces the team to name the problem it is trying to solve.
 
 **Define success before the pilot, not during it.** A useful pilot starts with defined success metrics and a defined evaluation window. The team agrees up front what result means scale, what result means iterate, and what result means kill. Pre-commitment is the entire point. It converts the end-of-pilot conversation from a negotiation between advocates and skeptics into a reading of results everyone already agreed to honor. Pilots end on schedule, in one of three states, and the organization learns that AI initiatives conclude.
 
-**A structured rubric for build versus buy.** We maintain a formal evaluation rubric for comparing platforms, scoring each against the same dimensions: fit to the specific workflow, integration cost, data handling, vendor trajectory, and the realistic internal alternative. The rubric matters less for any individual score than for what it prevents, which is decisions made on demo charisma. Every vendor demo is impressive. The rubric asks the questions the demo was designed to avoid.
+**A structured rubric for build versus buy.** Compare platforms against the same dimensions: fit to the specific workflow, integration cost, data handling, vendor trajectory, and the realistic internal alternative. The rubric matters less for any individual score than for what it prevents, which is decisions made on demo charisma. Every vendor demo is impressive. The rubric asks the questions the demo was designed to avoid.
 
 **Feedback loops that are qualitative and quantitative at once.** During pilots, it is useful to collect both the numbers and the narrative regularly, because each catches what the other misses. The metrics catch slow degradation that enthusiastic users will not report. The conversations catch friction and workarounds that never show up in usage data until adoption has already collapsed. Evaluation is not a phase that precedes deployment. It is a loop that runs for the life of the system.
 

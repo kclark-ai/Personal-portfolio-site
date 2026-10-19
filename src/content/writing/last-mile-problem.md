@@ -28,11 +28,9 @@ Most organizations treat these four problems as implementation details, the clea
 
 ## What closing the last mile actually requires
 
-At Profitable Ideas Exchange, I lead AI strategy and transformation. Approximately 75 employees use AI tools, including Microsoft Copilot. Our workflow and automation initiatives released 4.6 project coordinator FTE-equivalents of capacity, calculated from hours saved over a 48-week working year. That is capacity available for other work, not a reduction in headcount or verified cash savings.
+Closing the last mile starts with understanding where the friction actually lives. Map the workflow, establish a baseline, then test whether the system removes effort or simply relocates it. A good model does not compensate for an unclear process.
 
-In practice, that meant a sequence that looks more like change management than engineering, because it is. Before building anything, I interviewed leaders and decision makers in every department to find where the friction actually lived, which is reliably different from where people assume it lives. Our largest single win came from mining Salesforce activity data, which showed that an enormous share of expensive hours were being consumed by meetings that AI tooling could either eliminate or attend in a person's place. The workflow got redesigned first. The tools were deployed into the redesign. The result was measured against the baseline. That sequence, applied repeatedly, is the whole method.
-
-Sustaining adoption required its own infrastructure: weekly office hours where anyone can bring a stuck workflow, monthly trainings anchored to specific roles rather than generic prompting tips, internal champions embedded in every pilot so that trust travels through colleagues rather than mandates, and a searchable library of prompts and agents so that a solved problem stays solved. I focus on success criteria, feedback, and hours released for other work, rather than treating tool usage alone as a result. The discipline is not glamorous. It is also the entire difference between our outcomes and a deployment that never becomes part of daily work.
+Adoption also needs ongoing support: role-specific training, accessible feedback, and clear ownership of failures. Measure both output quality and the effort required to review it. Tool usage alone does not establish that the work has improved.
 
 ## The organizational implication leaders keep missing
 

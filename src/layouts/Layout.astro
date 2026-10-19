@@ -7,8 +7,8 @@ interface Props {
   darkHero?: boolean;
 }
 const {
-  title       = 'Kevin Clark | AI Strategy, Transformation and Executive Leadership',
-  description = 'Kevin Clark is a Director specializing in enterprise AI strategy, organizational transformation, executive advisory programs, and technology leadership.',
+  title       = 'Kevin Clark | AI Strategy, Agents and Evaluation',
+  description = 'AI strategy, agents, automation and evaluation. Independent projects and writing by Kevin Clark on making AI useful in real workflows.',
   darkHero    = false,
 } = Astro.props;
 ---
@@ -25,11 +25,11 @@ const {
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url.href} />
-    <meta property="og:image" content="https://kevinclark.ai/og-leadership.png" />
+    <meta property="og:image" content="https://kevinclark.ai/og-ai-focus.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Kevin Clark — AI Strategy and Transformation. Executive engagement, commercial leadership and AI systems." />
-    <meta name="twitter:image" content="https://kevinclark.ai/og-leadership.png" />
+    <meta property="og:image:alt" content="Kevin Clark — AI Strategy and Transformation. Agents, evaluation and practical AI systems." />
+    <meta name="twitter:image" content="https://kevinclark.ai/og-ai-focus.png" />
     <meta name="twitter:image:alt" content="Kevin Clark — AI Strategy and Transformation" />
     <link rel="canonical" href={Astro.url.href} />
     <meta name="twitter:card" content="summary_large_image" />
@@ -43,9 +43,7 @@ const {
       "@type": "Person",
       "name": "Kevin Clark",
       "url": "https://kevinclark.ai",
-      "jobTitle": "Director",
-      "worksFor": {"@type": "Organization", "name": "Profitable Ideas Exchange"},
-      "description": "Enterprise AI strategy, organizational transformation, and executive advisory programs.",
+      "description": "AI strategy, agent development, evaluation and organizational adoption.",
       "sameAs": [
         "https://www.linkedin.com/in/kevinclarkai/",
         "https://github.com/kclark-ai"

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 
 const SECTIONS = [
   { id: 'about',      label: 'About' },
-  { id: 'experience', label: 'Experience' },
+  { id: 'ai-practice', label: 'AI Practice' },
   { id: 'domains', label: 'Expertise' },
   { id: 'projects',    label: 'Projects' },
   { id: 'writing',    label: 'Writing' },

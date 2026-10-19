@@ -17,4 +17,4 @@ Adjust the RSI threshold, trailing stop, position size, minimum hold, and cooldo
 
 ## Independent work
 
-This is an independent technical project, separate from Profitable Ideas Exchange and its clients.
+This is an independent technical project.

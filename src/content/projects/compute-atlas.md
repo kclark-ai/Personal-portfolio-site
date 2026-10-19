@@ -11,7 +11,7 @@ summary: "An independent research atlas connecting data center locations with po
 
 Where are data centers, and what can public evidence tell us about the resources and infrastructure around them?
 
-Compute Atlas brings facility locations, electricity generation, historical grid regions, water disclosures and watershed context into one map. It is intended for utilities, developers, planners and infrastructure researchers. It is independent work, separate from Profitable Ideas Exchange and its clients.
+Compute Atlas brings facility locations, electricity generation, historical grid regions, water disclosures and watershed context into one map. It is intended for utilities, developers, planners and infrastructure researchers. It is an independent technical project.
 
 [Open the live atlas](https://map.kevinclark.ai/)
 

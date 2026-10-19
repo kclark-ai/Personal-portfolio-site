@@ -30,7 +30,7 @@ The cumulative product of these failures is not just wasted spend. It is cynicis
 
 ## What works instead
 
-The internal playbook is not the AI-native playbook run slower. It is a different discipline with its own sequence, and I have tested it across an entire organization: developing AI agents with quality controls and working with participating directors to improve client deliverables. Not all directors use the custom agents, and building trust remains part of the work.
+The internal playbook is not the AI-native playbook run slower. It has its own sequence: understand the workflow, define quality controls, test with the people doing the work, and expand when the evidence supports it. Building trust remains part of the work.
 
 Start where the friction is, not where the technology is impressive, which means structured discovery with the people who own the workflows before any tool is selected. Build trust as deliberately as capability: champions embedded in every pilot so that confidence travels through colleagues rather than mandates, fluency expectations anchored to specific roles rather than generic training, and standing forums where anyone can bring a stuck workflow without ceremony. Put governance in place before scale, framed honestly as the thing that makes speed safe. Run pilots with success criteria committed in advance, so initiatives conclude instead of fading. And treat organizational resistance as an engineering input rather than a character flaw in the workforce, because a deployment design that requires people to be different than they are is a deployment design that fails.
 
