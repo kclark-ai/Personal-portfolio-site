@@ -14,6 +14,8 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [isHero, setIsHero]     = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const closeMenu = () => { setMenuOpen(false); menuButtonRef.current?.focus(); };
   const progressRef             = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -93,7 +95,7 @@ export default function Navigation() {
             }`}
             aria-hidden="true"
           />
-          <span className={`font-mono text-[10px] tracking-[0.18em] transition-colors duration-300 ${
+          <span className={`font-mono text-[11px] tracking-[0.18em] transition-colors duration-300 ${
             isHero ? 'text-[#A8A095] group-hover:text-[#F5F0E6]' : 'text-ink-3 group-hover:text-ink'
           }`}>
             KEVIN CLARK
@@ -106,7 +108,8 @@ export default function Navigation() {
             <a
               key={s.id}
               href={`#${s.id}`}
-              className={`font-mono text-[10px] tracking-[0.14em] uppercase transition-colors duration-300 ${
+              aria-current={active === s.id ? "location" : undefined}
+              className={`font-mono text-[11px] tracking-[0.14em] uppercase transition-colors duration-300 ${
                 active === s.id
                   ? isHero ? 'text-[#F5F0E6]' : 'text-ink'
                   : isHero ? 'text-[#A8A095] hover:text-[#E8DFC9]' : 'text-ink-3 hover:text-ink-2'
@@ -119,12 +122,13 @@ export default function Navigation() {
 
         {/* Mobile hamburger */}
         <button
-          className="lg:hidden flex flex-col justify-center items-center w-8 h-8 gap-[5px]"
+          ref={menuButtonRef}
+          className="lg:hidden flex flex-col justify-center items-center w-11 h-11 gap-[5px]"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           aria-controls="mobile-navigation"
-          onKeyDown={e => { if (e.key === 'Escape') setMenuOpen(false); }}
+          onKeyDown={e => { if (e.key === 'Escape') closeMenu(); }}
         >
           <span className={`block w-5 h-px transition-all duration-300 ${isHero ? 'bg-[#F5F0E6]' : 'bg-ink'} ${menuOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
           <span className={`block w-5 h-px transition-all duration-300 ${isHero ? 'bg-[#F5F0E6]' : 'bg-ink'} ${menuOpen ? 'opacity-0' : ''}`} />
@@ -134,13 +138,13 @@ export default function Navigation() {
 
       {menuOpen && (
         <div className={`lg:hidden border-t ${isHero ? 'border-white/10 bg-[#0A0E1A]' : 'border-rule bg-parchment'}`}>
-          <nav id="mobile-navigation" aria-label="Mobile site sections" onKeyDown={e => { if (e.key === 'Escape') setMenuOpen(false); }} className="max-w-5xl mx-auto px-8 py-6 flex flex-col gap-5">
+          <nav id="mobile-navigation" aria-label="Mobile site sections" onKeyDown={e => { if (e.key === 'Escape') closeMenu(); }} className="max-w-5xl mx-auto px-8 py-6 flex flex-col gap-5">
             {SECTIONS.map((s) => (
               <a
                 key={s.id}
                 href={`#${s.id}`}
                 onClick={() => setMenuOpen(false)}
-                className={`font-mono text-[10px] tracking-[0.14em] uppercase ${isHero ? 'text-[#A8A095]' : 'text-ink-3'}`}
+                className={`min-h-11 flex items-center font-mono text-[11px] tracking-[0.14em] uppercase ${isHero ? 'text-[#A8A095]' : 'text-ink-3'}`}
               >
                 {s.label}
               </a>

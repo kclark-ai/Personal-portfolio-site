@@ -10,22 +10,22 @@ const TRANSITION = {
 
 const PANELS = [
   {
-    bg: '#1A2A3F', line1: 'DISCOVER', line2: 'THE WORKFLOW', counter: '01 / 04',
+    bg: '#1A2A3F', text: '#F5F0E6', line1: 'DISCOVER', line2: 'THE WORKFLOW', counter: '01 / 04',
     body: "Start with the people who own the work. Map the steps, decisions, and constraints before choosing a tool.",
     illus: 'signal' as const,
   },
   {
-    bg: '#C65D3A', line1: 'BUILD', line2: 'THE SYSTEM', counter: '02 / 04',
+    bg: '#C65D3A', text: '#0A0E1A', line1: 'BUILD', line2: 'THE SYSTEM', counter: '02 / 04',
     body: "Design for the workflow, including integrations, human review, failure handling, and quality controls. A working pilot is the beginning of that process.",
     illus: 'concentric' as const,
   },
   {
-    bg: '#7A8B6F', line1: 'EVALUATE', line2: 'THE THRESHOLD', counter: '03 / 04',
+    bg: '#7A8B6F', text: '#0A0E1A', line1: 'EVALUATE', line2: 'THE THRESHOLD', counter: '03 / 04',
     body: "Define what good enough means for the task. Establish a baseline and agree on success criteria before the pilot begins.",
     illus: 'radial' as const,
   },
   {
-    bg: '#8B8682', line1: 'SCALE', line2: 'ACROSS THE ORG', counter: '04 / 04',
+    bg: '#8B8682', text: '#0A0E1A', line1: 'SCALE', line2: 'ACROSS THE ORG', counter: '04 / 04',
     body: "Expand where the evidence supports it. Pair training with workflow changes, feedback, and clear ownership so adoption can continue after launch.",
     illus: 'wave' as const,
   },
@@ -248,7 +248,7 @@ export default function DeploymentPanels() {
               minWidth:        0,
               overflow:        'hidden',
               backgroundColor: panel.bg,
-              color:           CREAM,
+              color:           panel.text,
               display:         'flex',
               flexDirection:   'column',
               justifyContent:  'space-between',
@@ -294,10 +294,10 @@ export default function DeploymentPanels() {
 
             {/* Counter + body */}
             <div style={{ padding: '16px 32px 36px' }}>
-              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px', opacity: 0.6 }}>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px', opacity: 1 }}>
                 {panel.counter}
               </p>
-              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', lineHeight: 1.7, letterSpacing: '0.02em', textTransform: 'uppercase', opacity: 0.85, maxWidth: '85%' }}>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', lineHeight: 1.7, letterSpacing: '0.02em', textTransform: 'uppercase', opacity: 1, maxWidth: '100%' }}>
                 {panel.body}
               </p>
             </div>

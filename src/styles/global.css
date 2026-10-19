@@ -19,7 +19,7 @@
   --color-parchment-2:#F3F2EF;
   --color-rule:       #E8E6E1;
   --color-rule-2:     #D4D1CB;
-  --color-oxblood:    #9A6B1E;
+  --color-oxblood:    #93661C;
 }
 
 /* ─── Base ──────────────────────────────────────────────── */
@@ -386,3 +386,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 
 .fade-up.will-reveal:not(.in-view) { opacity: 0; transform: translateY(20px); }
 @media (prefers-reduced-motion: reduce) { .fade-up.will-reveal:not(.in-view) { opacity: 1; transform: none; } }
+
+/* Motion controls and touch targets preserve the existing visual system. */
+.particle-control{position:absolute;right:1.5rem;bottom:1.5rem;min-height:44px;padding:10px 14px;border:1px solid #6d706f;border-radius:2px;color:#E8DFC9;background:#0A0E1A;font-family:var(--font-mono);font-size:11px;letter-spacing:.04em}
+@media (prefers-reduced-motion: reduce){.status-dot{animation:none}.hero-name,.hero-sub,.hero-eyebrow{animation:none!important}*{scroll-behavior:auto!important}}
+.prose blockquote{border-left:2px solid var(--color-rule-2);padding-left:1.25rem;margin:1.5rem 0}

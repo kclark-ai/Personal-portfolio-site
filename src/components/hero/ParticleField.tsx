@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 // Phase durations (seconds) — total cycle = 12s
@@ -21,6 +21,9 @@ function fillChaos(arr: Float32Array, count: number) {
 }
 
 export default function ParticleField() {
+  const [motionPaused,setMotionPaused]=useState(false);
+  const [reducedMotion,setReducedMotion]=useState(false);
+  useEffect(()=>{const media=window.matchMedia('(prefers-reduced-motion: reduce)');const sync=()=>setReducedMotion(media.matches);sync();media.addEventListener('change',sync);return()=>media.removeEventListener('change',sync)},[]);
   const mountRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -84,14 +87,25 @@ export default function ParticleField() {
     const points = new THREE.Points(geometry, material);
     scene.add(points);
 
+    let syncSurface = () => {};
+    const ro = new ResizeObserver(() => {
+      syncSurface();
+      if(!mount.clientWidth||!mount.clientHeight)return;
+      camera.aspect = mount.clientWidth / mount.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(mount.clientWidth, mount.clientHeight);
+      if(motionPaused||reducedMotion)renderer.render(scene,camera);
+    });
+    ro.observe(mount);
+
     // ── Reduced motion: static sphere, single render ──────────
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) {
+    if (prefersReduced || reducedMotion || motionPaused) {
       currentPos.set(spherePos);
       posAttr.needsUpdate = true;
       renderer.render(scene, camera);
       return () => {
-        geometry.dispose(); material.dispose(); renderer.dispose();
+        ro.disconnect(); geometry.dispose(); material.dispose(); renderer.dispose();
         if (mount.contains(renderer.domElement)) mount.removeChild(renderer.domElement);
       };
     }
@@ -105,29 +119,28 @@ export default function ParticleField() {
     };
     window.addEventListener('mousemove', onMouseMove, { passive: true });
 
-    // ── Resize ────────────────────────────────────────────────
-    const ro = new ResizeObserver(() => {
-      camera.aspect = mount.clientWidth / mount.clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(mount.clientWidth, mount.clientHeight);
-    });
-    ro.observe(mount);
-
     // ── Animation loop ─────────────────────────────────────────
-    let rafId: number;
-    let paused    = false;
+    let rafId: number | undefined;
+    let heroVisible = true;
     let startTs   = performance.now();
     let prevCycleT = 0;
 
-    const onVisibility = () => { paused = document.hidden; };
+    const syncAnimation = () => {
+      if (!document.hidden && heroVisible && mount.clientWidth > 0 && mount.clientHeight > 0) {
+        if(rafId===undefined)rafId=requestAnimationFrame(tick);
+      } else if(rafId!==undefined){cancelAnimationFrame(rafId);rafId=undefined;}
+    };
+    syncSurface = syncAnimation;
+    const heroObserver=new IntersectionObserver(entries=>{heroVisible=entries[0].isIntersecting;syncAnimation()});
+    heroObserver.observe(document.getElementById('hero')||mount);
+    const onVisibility = syncAnimation;
     document.addEventListener('visibilitychange', onVisibility);
 
     function tick(ts: number) {
-      rafId = requestAnimationFrame(tick);
-      if (paused) return;
+      rafId = undefined;
+      if (document.hidden || !heroVisible) return;
       // Skip rendering when hero has scrolled fully off-screen
-      const heroEl = document.getElementById('hero');
-      if (heroEl && heroEl.getBoundingClientRect().bottom <= 0) return;
+
 
       const elapsed = (ts - startTs) / 1000;
       const cycleT  = elapsed % CYCLE;
@@ -183,12 +196,14 @@ export default function ParticleField() {
       points.rotation.x = rotX;
 
       renderer.render(scene, camera);
+      rafId = requestAnimationFrame(tick);
     }
 
-    rafId = requestAnimationFrame(tick);
+    syncAnimation();
 
     return () => {
-      cancelAnimationFrame(rafId);
+      if(rafId!==undefined)cancelAnimationFrame(rafId);
+      heroObserver.disconnect();
       ro.disconnect();
       window.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('visibilitychange', onVisibility);
@@ -197,14 +212,12 @@ export default function ParticleField() {
       renderer.dispose();
       if (mount.contains(renderer.domElement)) mount.removeChild(renderer.domElement);
     };
-  }, []);
+  }, [motionPaused,reducedMotion]);
 
   return (
-    <div
-      ref={mountRef}
-      className="w-full h-full"
-      role="img"
-      aria-label="Animated particle field — AI signal forming from chaos"
-    />
+    <div className="relative w-full h-full">
+      <div ref={mountRef} className="w-full h-full" aria-hidden="true" />
+      {reducedMotion?<span className="particle-control">Motion reduced</span>:<button className="particle-control" type="button" aria-pressed={motionPaused} onClick={()=>setMotionPaused(v=>!v)}>{motionPaused?'Resume animation':'Pause animation'}</button>}
+    </div>
   );
 }
